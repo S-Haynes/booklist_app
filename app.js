@@ -131,9 +131,11 @@ document.querySelector("#book-list").addEventListener("click", e => {
   UI.clearAlerts();
 
   // remove book from UI
-  UI.deleteBook(e.target);
+  if (e.target.classList.contains("delete")) {
+    UI.deleteBook(e.target);
+    UI.showAlert("Book Removed", "success");
+    //remove book from storage
 
-  //remove book from storage
-  Store.removeBook(e.target.parentElement.previousElementSibling.textContent);
-  UI.showAlert("Book Removed", "success");
+    Store.removeBook(e.target.parentElement.previousElementSibling.textContent);
+  }
 });
